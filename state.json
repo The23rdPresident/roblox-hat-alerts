@@ -1,0 +1,23 @@
+{
+  "fail_since": null,
+  "fail_warned": false,
+  "items": {
+    "169444294": {
+      "at": 0,
+      "listing": null,
+      "price": null
+    },
+    "878895806": {
+      "at": 0,
+      "listing": null,
+      "price": null
+    },
+    "878899787": {
+      "at": 0,
+      "listing": null,
+      "price": null
+    }
+  },
+  "last_attempt_day": "2026-10-09",
+  "last_success_day": "2026-10-09"
+}
