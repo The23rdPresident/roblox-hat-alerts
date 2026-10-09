@@ -21,7 +21,7 @@ concurrency:
 jobs:
   check-prices:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 7
     steps:
       - name: Load the latest code and saved alert state
         uses: actions/checkout@v7
@@ -41,7 +41,23 @@ jobs:
           PING_EVERYONE: 'true'
           TEST_ALERT: ${{ github.event.inputs.test_alert || 'false' }}
           PRICE_ALERT_STATE_FILE: state.json
-        run: python -u price_alert.py
+        run: |
+          python -u - <<'PY'
+          import time
+          import price_alert
+
+          window_end = time.monotonic() + 300
+          print("Checking about once per minute during this job.", flush=True)
+          while time.monotonic() < window_end:
+              check_started = time.monotonic()
+              backoff = price_alert.main() or 0
+              price_alert.TEST_ALERT = False
+              price_alert.MANUAL_RUN = False
+              next_check = max(check_started + 60, time.monotonic() + backoff)
+              if next_check >= window_end:
+                  break
+              time.sleep(max(0, next_check - time.monotonic()))
+          PY
 
       - name: Save alert state so the next run does not repeat the same alert
         if: ${{ always() }}
