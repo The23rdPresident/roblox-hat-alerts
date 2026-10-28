@@ -3,9 +3,9 @@
   "fail_warned": false,
   "items": {
     "169444294": {
-      "at": 1793140836,
-      "listing": "2e81066a-b1f9-4190-bb0d-076ce1dc9603",
-      "price": 77000
+      "at": 1793151725,
+      "listing": "9e73cc42-1344-42d2-9db5-95ade8fa8fcd",
+      "price": 75000
     },
     "878895806": {
       "at": 0,
@@ -18,6 +18,6 @@
       "price": null
     }
   },
-  "last_attempt_day": "2026-10-27",
-  "last_success_day": "2026-10-27"
+  "last_attempt_day": "2026-10-28",
+  "last_success_day": "2026-10-28"
 }
